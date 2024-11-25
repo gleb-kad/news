@@ -1,5 +1,7 @@
+// Главная страница
 import { PrismaClient } from '@prisma/client';
-import NewsList from './NewsList';
+import NewsList from '../../components/NewsList';
+import Header from '@/components/Header';
 
 const prisma = new PrismaClient();
 
@@ -13,10 +15,16 @@ export default async function Home() {
   const news = await getNews();  // Получаем данные с сервера
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 style={{fontSize: '48px', fontWeight: 'bold' }}>Новостной Матрос</h1>
+    <div>
+      <Header />
 
-      <NewsList news={news} />  {/* Передаем данные в компонент клиента */}
+      {/* Синий блок с заголовком и ссылками на главной странице */}
+      
+
+      {/* Список новостей */}
+      <main className="container mx-auto py-8 px-6">
+        <NewsList news={news} />  {/* Передаем данные новостей в компонент списка */}
+      </main>
     </div>
   );
 }
