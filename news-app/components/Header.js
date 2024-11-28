@@ -26,9 +26,8 @@ export default function Header() {
       {/* Могут быть дополнительные элементы справа */}
       <nav>
         <ul className="flex space-x-4">
-          <li><Link href="/news" className="hover:text-gray-400">Новости</Link></li>
-          <li><Link href="/about" className="hover:text-gray-400">О нас</Link></li>
-          <li><Link href="/contacts" className="hover:text-gray-400">Контакты</Link></li>
+          <li><Link href="/about" className="hover:text-blue-400">О нас</Link></li>
+          <li><Link href="/contacts" className="hover:text-blue-400">Контакты</Link></li>
         </ul>
       </nav>
     </header>

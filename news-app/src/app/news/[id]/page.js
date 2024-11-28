@@ -1,30 +1,42 @@
-// Страница конкретной новости
 import Header from '@/components/Header';
-import NewsCard from '@/components/NewsCard'; // Этот компонент можно использовать для отображения самой новости
+import { PrismaClient } from '@prisma/client';
+import NewsCard from '../../../../components/NewsCard';
 
-export default function NewsPage() {
-  const news = {
-    id: 1,
-    title: 'Заголовок новости',
-    description: 'Описание новости...',
-    imageUrl: 'https://via.placeholder.com/300x150',
-    link: '/news/1',
-  };
+const prisma = new PrismaClient();
+
+export default async function NewsPage({ params }) {
+  const { id } = await params; // 'await' добавляется к params
+
+  const news = await prisma.news.findUnique({
+    where: { id: parseInt(id) },
+  });
+
+  if (!news) {
+    return (
+      <div>
+        <Header />
+        <main className="container mx-auto py-8 px-6">
+          <p>Новость не найдена.</p>
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div>
       <Header />
-      
-
-      {/* Сам компонент с контентом новости */}
       <main className="container mx-auto py-8 px-6">
-        <NewsCard
-          key={news.id}
-          title={news.title}
-          description={news.description}
-          imageUrl={news.imageUrl}
-          link={news.link}
-        />
+        {/* <NewsCard /> */}
+        <div className="bg-white shadow-md rounded-lg p-6 max-w-2xl mx-auto">
+        <h1 className="text-[48px] font-bold text-[#4169E1] mb-2 mx-auto">{news.title}</h1>
+          <p className="text-sm text-gray-500 mb-4">Дата: {new Date(news.createdAt).toLocaleDateString()}</p>
+          <img
+            src={news.imageUrl || '/default-news.jpg'} // URL изображения или заглушка
+            alt={news.title}
+            className="w-full h-auto rounded-md mb-4"
+          />
+          <p className="text-gray-700">{news.description}</p>
+        </div>
       </main>
     </div>
   );
