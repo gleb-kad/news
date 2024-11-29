@@ -3,19 +3,19 @@ import Image from 'next/image';
 
 export default function Header() {
   return (
-    <header className="flex items-center justify-between p-4 bg-gray-800 text-white] h-[150px] bg-opacity-70" style={{ backgroundImage: 'url("/background.jpg")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+    <div className="flex items-center justify-between p-4 bg-gray-800 text-white] h-[250px] bg-opacity-70" style={{ backgroundImage: 'url("/even.png")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
       {/* Картинка слева */}
       <div className="flex items-center">
         {/* Делаем картинку кликабельной и ссылающейся на главную страницу */}
-        <Link href="/">
+        {/* <Link href="/">
           <Image 
-            src="/cat.jpg"  // Путь к новому изображению
+            src="/icon.png"  // Путь к новому изображению
             alt="Logo" 
             width={140} // Ширина картинки
             height={40} // Высота картинки
             className="mr-2" // Отступ от картинки к тексту
           />
-        </Link>
+        </Link> */}
         
         {/* Делаем заголовок кликабельным */}
         <Link href="/">
@@ -30,6 +30,6 @@ export default function Header() {
           <li><Link href="/contacts" className="hover:text-blue-400">Контакты</Link></li>
         </ul> */}
       </nav>
-    </header>
+    </div>
   );
 }

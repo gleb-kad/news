@@ -4,20 +4,21 @@
 
 :root {
 
-  --background: hsl(0, 0%, 100%);
+  /* --background: hsl(0, 0%, 100%); */
   /* --foreground: #252525; */
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #8EB9D8;
+    --background: #4C535C
+
+    ;
     /* --foreground: #ffffff; */
   }
 }
 
 body {
-  color: var(--foreground);
+  /* color: var(--foreground); */
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
-

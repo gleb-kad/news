@@ -1,4 +1,4 @@
-export default function NewsCard({ title, description, imageUrl, date }) {
+export default function NewsCard({ title, description, imageUrl, createdAt}) {
   const imageSrc = imageUrl || '/citty.jpg'; // если нет URL, используем дефолтное изображение
 
   return (
@@ -13,7 +13,7 @@ export default function NewsCard({ title, description, imageUrl, date }) {
       <div className="p-4">
         <h3 className="text-lg font-semibold mb-2">{title}</h3>
         <p className="text-gray-600 mb-2">{description}</p>
-        <p className="text-gray-400 text-sm">{date}</p>
+        <p className="text-black text-sm">{createdAt}</p>
       </div>
     </div>
   );
