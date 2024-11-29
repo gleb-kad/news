@@ -1,15 +1,20 @@
-export default function NewsCard({ title, description, imageUrl, link }) {
+export default function NewsCard({ title, description, imageUrl, date }) {
+  const imageSrc = imageUrl || '/citty.jpg'; // если нет URL, используем дефолтное изображение
+
   return (
-    <div className="bg-black rounded-lg shadow-md p-4">
-      {imageUrl && (
+    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow bg-white h-full">
+      <div className="relative h-48 w-full">
         <img
-          src={imageUrl}
+          src={imageSrc}  // вставляем URL картинки
           alt={title}
-          className="w-full h-40 object-cover rounded-t-lg"
+          className="object-cover w-full h-full"
         />
-      )}
-      <h2 className="text-[48px] text-[#4169E1] font-bold mt-4">{title}</h2>
-      <p className="text-gray-600 mt-2">{description}</p>
+      </div>
+      <div className="p-4">
+        <h3 className="text-lg font-semibold mb-2">{title}</h3>
+        <p className="text-gray-600 mb-2">{description}</p>
+        <p className="text-gray-400 text-sm">{date}</p>
+      </div>
     </div>
   );
 }

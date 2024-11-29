@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export default function Header() {
   return (
-    <header className="flex items-center justify-between p-4 bg-gray-800 text-white] h-[300px] bg-opacity-70" style={{ backgroundImage: 'url("/background.jpg")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+    <header className="flex items-center justify-between p-4 bg-gray-800 text-white] h-[150px] bg-opacity-70" style={{ backgroundImage: 'url("/background.jpg")', backgroundSize: 'cover', backgroundPosition: 'center' }}>
       {/* Картинка слева */}
       <div className="flex items-center">
         {/* Делаем картинку кликабельной и ссылающейся на главную страницу */}
@@ -11,8 +11,8 @@ export default function Header() {
           <Image 
             src="/cat.jpg"  // Путь к новому изображению
             alt="Logo" 
-            width={200} // Ширина картинки
-            height={50} // Высота картинки
+            width={140} // Ширина картинки
+            height={40} // Высота картинки
             className="mr-2" // Отступ от картинки к тексту
           />
         </Link>
@@ -25,10 +25,10 @@ export default function Header() {
 
       {/* Могут быть дополнительные элементы справа */}
       <nav>
-        <ul className="flex space-x-4">
+        {/* <ul className="flex space-x-4">
           <li><Link href="/about" className="hover:text-blue-400">О нас</Link></li>
           <li><Link href="/contacts" className="hover:text-blue-400">Контакты</Link></li>
-        </ul>
+        </ul> */}
       </nav>
     </header>
   );

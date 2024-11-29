@@ -1,46 +1,39 @@
-'use client';  // Указание, что этот компонент работает на клиенте
+'use client';
 
 import { useState } from 'react';
 import Link from 'next/link';
+import NewsCard from './NewsCard';
 
-export default function NewsList({ news }) {
-  const [search, setSearch] = useState("");  // Хук работает только на клиенте
+export default function NewsList({ news = [] }) { // Указываем значение по умолчанию для news
+  const [search, setSearch] = useState('');
 
-  const filteredNews = news.filter(item =>
-    item.title.toLowerCase().includes(search.toLowerCase())
-  );
+  const filteredNews = news.length
+    ? news.filter((item) =>
+        item.title.toLowerCase().includes(search.toLowerCase())
+      )
+    : [];
 
   return (
     <div>
       {/* Поиск */}
-      <input
-        type="text"
-        style={{
-            color: "#000000", // Цвет вводимого текста
-            backgroundColor: "#f0f0f0", // Цвет фона
-            fontSize: "16px", // Размер шрифта
-            padding: "8px", // Внутренние отступы
-            border: "1px solid #ccc", // Граница
-            borderRadius: "4px", // Скругленные углы
-          }}
-        className="p-2 w-full rounded-md border border-gray-300 focus:ring-2 focus:ring-blue-500"
-        placeholder="Введите название новости"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+      
       {/* Список новостей */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
         {filteredNews.length > 0 ? (
           filteredNews.map((item) => (
             <Link key={item.id} href={`/news/${item.id}`}>
-  <div className="border rounded-lg p-4 shadow-md hover:shadow-xl transition-shadow cursor-pointer bg-white hover:bg-gray-100">
-    <h2 className="text-2xl font-semibold mb-2 text-[#4169E1]">{item.title}</h2>
-    <p className="text-gray-600">{item.description.slice(0, 100)}...</p>
-  </div>
-</Link>
+              <NewsCard
+                title={item.title}
+                description={item.description}
+                imageUrl={item.imageUrl || '/citty.png'}
+                date={new Date(item.date).toLocaleDateString()}
+              />
+            </Link>
           ))
         ) : (
-          <div className="col-span-3 text-center text-[#FFFAFA]">Ничего подходящего не найдено</div>
+          <div className="col-span-3 text-center text-gray-600">
+            Ничего подходящего не найдено
+          </div>
         )}
       </div>
     </div>
