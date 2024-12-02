@@ -7,5 +7,10 @@ const nextConfig: NextConfig = {
 export default nextConfig;
 
 module.exports = {
-  reactStrictMode: true,
+  devIndicators: {
+    autoPrerender: false,
+  },
+  serverRuntimeConfig: {
+    host: '0.0.0.0',
+  },
 };

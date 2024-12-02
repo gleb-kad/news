@@ -1,0 +1,51 @@
+version: '3'
+services:
+  db:
+    image: postgres:alpine
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345678
+      POSTGRES_DB: news_docker
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"  
+    networks:
+      - app_network
+
+  next-app:
+    build:
+      context: ./news-app
+      dockerfile: Dockerfile
+    container_name: next_app
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql://postgres:12345678@postgres_db:5432/news_docker
+    volumes:
+      - ./news-app:/usr/src/app
+    ports:
+      - "8000:8000"
+    
+    networks:
+      - app_network
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    container_name: nginx_server
+    ports:
+      - "70:70"
+    depends_on:
+      - next-app
+    networks:
+      - app_network
+
+volumes:
+  postgres_data:
+
+networks:
+  app_network:
+    driver: bridge
