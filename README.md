@@ -1,2 +1,2 @@
 # news
- page for news pages
+ GIF - https://github.com/gleb-kad/news/blob/README/records/news.gif
